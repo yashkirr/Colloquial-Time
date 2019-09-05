@@ -143,7 +143,6 @@ def returnTime(h, m):
 
 # example usage
 def main():
-    timeArr = getcurrentTime()
     print(returnTime(5,23))
 
 
