@@ -12,7 +12,7 @@ context = ["o' clock", "past", "to"]
 
 
 
-def getTime():
+def getcurrentTime():
     """
     Summary
        Gets current time and returns a string
@@ -27,11 +27,27 @@ def getTime():
     """
     h = int('{:%H}'.format(datetime.datetime.now()))
     m = int('{:%M}'.format(datetime.datetime.now()))
-    if h > 12:
-        h = h-12
+
     return [h, m]
 
 
+def appropriateHours(h):
+    """
+    Summary
+        Rounds hours to its 12hr form
+    ----------------------------------
+    :param m: int
+        Value of hours
+    ----------------------------------
+    :return:
+    -----------
+        int
+        12hr format hour value
+
+    """
+    if h > 12:
+        h = h-12
+    return h
 
 def appropriateMinutes(m):
     """
@@ -92,6 +108,7 @@ def returnTime(h, m):
         returns colloquial english phrase
 
     """
+    h = appropriateHours(h)
     m = appropriateMinutes(m)
     if (pastOrTo(m) == context[0]) or (m == 0): # check if time is currently o'clock or to be o' clock
         if m == 0:
@@ -126,8 +143,8 @@ def returnTime(h, m):
 
 # example usage
 def main():
-    timeArr = getTime()
-    print(returnTime(timeArr[0], timeArr[1]))
+    timeArr = getcurrentTime()
+    print(returnTime(5,23))
 
 
 if __name__ == "__main__":
